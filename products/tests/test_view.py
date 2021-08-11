@@ -11,7 +11,8 @@ class TestProductListView:
         assert reverse("products:list") == "/products/"
         assert resolve("/products/").view_name == "products:list"
 
-        url = reverse("products:list_by_category", kwargs={"slug": "test-slug"})
+        url = reverse("products:list_by_category",
+                      kwargs={"slug": "test-slug"})
         assert url == "/products/category/test-slug/"
 
         view_name = resolve("/products/category/test-slug/").view_name
@@ -22,7 +23,8 @@ class TestProductListView:
         assert response.status_code == 200
 
         response = client.get(
-            reverse("products:list_by_category", kwargs={"slug": category.slug})
+            reverse("products:list_by_category",
+                    kwargs={"slug": category.slug})
         )
         assert response.status_code == 200
 
